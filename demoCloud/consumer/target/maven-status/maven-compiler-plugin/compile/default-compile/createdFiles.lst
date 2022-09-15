@@ -1,0 +1,9 @@
+com\sgw\common\properties\DemoProperties.class
+com\sgw\common\config\NetworkConfiguration.class
+com\sgw\common\config\WebMvcConfiguration$MyInterceptor.class
+com\sgw\common\postprocessor\CommonBeanPostProcessor.class
+com\sgw\common\config\WebMvcConfiguration$1.class
+com\sgw\App.class
+com\sgw\controller\ConsumerController.class
+com\sgw\api\UserInfoControllerClient.class
+com\sgw\common\config\WebMvcConfiguration.class

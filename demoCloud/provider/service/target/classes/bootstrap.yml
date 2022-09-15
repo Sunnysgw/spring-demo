@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: provider
+  datasource:
+    username: root
+    password: mysqlpw
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql-8.0-alone:3306/sgw
+  cloud:
+    nacos:
+      server-addr: nacos-standalone:8848
+      username: nacos
+      password: nacos
+      discovery:
+        cluster-name: ${CLUSTER_NAME:ali}
+        metadata:
+          author: sgw
+          date: 2020-09-06
+          grey: false
+
+
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
