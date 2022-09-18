@@ -1,3 +1,4 @@
+com\sgw\provider\common\filter\HeaderFilter.class
 com\sgw\provider\common\config\WebMVCConfiguration$1.class
 com\sgw\provider\ProviderApplication.class
 com\sgw\provider\dao\UserInfoDao.class

@@ -13,7 +13,6 @@
       <module>user</module>
       <module>demo-zookeeper</module>
       <module>config</module>
-        <module>demo-grpc</module>
         <module>demo-nacos-config</module>
     </modules>
     <packaging>pom</packaging>
@@ -35,6 +34,7 @@
     <mybatis.plus.version>3.2.0</mybatis.plus.version>
     <zookeeper.version>3.8.0</zookeeper.version>
     <commonlang.version>3.12.0</commonlang.version>
+    <aspectj.version>1.9.9.1</aspectj.version>
   </properties>
 
   <dependencies>
@@ -111,6 +111,16 @@
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-lang3</artifactId>
         <version>${commonlang.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjweaver</artifactId>
+        <version>${aspectj.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjrt</artifactId>
+        <version>${aspectj.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

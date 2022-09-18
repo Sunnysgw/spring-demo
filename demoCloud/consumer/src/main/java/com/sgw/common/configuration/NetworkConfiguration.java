@@ -1,16 +1,12 @@
-package com.sgw.common.config;
+package com.sgw.common.configuration;
 
 import com.alibaba.cloud.nacos.ribbon.NacosRule;
 import com.netflix.loadbalancer.IRule;
-import com.sgw.common.properties.DemoProperties;
 import feign.Logger;
 import feign.Request;
-import feign.auth.BasicAuthRequestInterceptor;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.concurrent.TimeUnit;

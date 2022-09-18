@@ -9,20 +9,26 @@
         <outputRelativeToContentRoot value="true" />
         <module name="zookeeper-api" />
         <module name="mybatis-plus-api" />
+        <module name="zookeeper" />
         <module name="mybatis-api" />
-        <module name="demo-grpc" />
+        <module name="nacos" />
         <module name="demo-zookeeper" />
         <module name="common-api" />
         <module name="demo-nacos-config" />
+        <module name="web" />
         <module name="service" />
         <module name="nacos-api" />
         <module name="web-api" />
+        <module name="mysql" />
         <module name="sdk" />
         <module name="user" />
+        <module name="mybatis-plus" />
         <module name="consumer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="demo-grpc" target="1.7" />
+      <module name="nacos-config-client-java-demo" target="1.8" />
       <module name="web-connon" target="1.8" />
     </bytecodeTargetLevel>
   </component>

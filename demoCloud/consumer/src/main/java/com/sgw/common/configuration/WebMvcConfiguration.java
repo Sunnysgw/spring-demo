@@ -1,4 +1,4 @@
-package com.sgw.common.config;
+package com.sgw.common.configuration;
 
 import lombok.extern.java.Log;
 import org.springframework.context.annotation.Configuration;

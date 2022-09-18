@@ -19,7 +19,6 @@ import javax.annotation.PostConstruct;
  **/
 @ConfigurationProperties(prefix = "demo")
 @Component
-@RefreshScope
 @Data
 @ToString
 @Log
@@ -34,7 +33,7 @@ public class DemoProperties {
         log.info("init");
     }
 
-    @Scheduled(cron = "*/3 * * * * ?")
+    //@Scheduled(cron = "*/3 * * * * ?")
     public void execute() {
         log.info("定时任务正常运行");
     }
