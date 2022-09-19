@@ -7,6 +7,7 @@ import org.apache.catalina.core.ApplicationContext;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,8 @@ public class UserInfoController implements UserInfoControllerAPI {
      */
     @Resource
     private UserInfoService userInfoService;
+
+    @Value("${}")
 
     private static final Integer ID = new Random().nextInt(100);
 

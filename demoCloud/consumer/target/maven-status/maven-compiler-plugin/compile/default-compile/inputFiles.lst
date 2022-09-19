@@ -5,7 +5,8 @@ E:\Project\spring-demo\demoCloud\consumer\src\main\java\com\sgw\common\propertie
 E:\Project\spring-demo\demoCloud\consumer\src\main\java\com\sgw\common\configuration\SentinelConfiguration.java
 E:\Project\spring-demo\demoCloud\consumer\src\main\java\com\sgw\common\MyEncoder.java
 E:\Project\spring-demo\demoCloud\consumer\src\main\java\com\sgw\common\postprocessor\CommonBeanPostProcessor.java
-E:\Project\spring-demo\demoCloud\consumer\src\main\java\com\sgw\common\interceper\HeaderInterceptor.java
+E:\Project\spring-demo\demoCloud\consumer\src\main\java\com\sgw\common\filter\ContentTypeFilter.java
 E:\Project\spring-demo\demoCloud\consumer\src\main\java\com\sgw\api\UserInfoControllerClient.java
 E:\Project\spring-demo\demoCloud\consumer\src\main\java\com\sgw\common\ControllerAdvice.java
 E:\Project\spring-demo\demoCloud\consumer\src\main\java\com\sgw\common\configuration\WebMvcConfiguration.java
+E:\Project\spring-demo\demoCloud\consumer\src\main\java\com\sgw\common\feigninterceper\HeaderInterceptor.java

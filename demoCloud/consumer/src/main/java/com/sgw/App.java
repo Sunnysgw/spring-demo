@@ -17,8 +17,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableDiscoveryClient
 @EnableFeignClients
 @EnableScheduling
-@EnableAspectJAutoProxy
-public class App 
+public class App
 {
     public static void main( String[] args )
     {

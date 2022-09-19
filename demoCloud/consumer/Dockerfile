@@ -9,6 +9,6 @@ VOLUME /tmp
 # 应用构建成功后的jar文件被复制到镜像内，名字也改成了app.jar
 ADD target/consumer-1.0-SNAPSHOT.jar consumer.jar
 # 启动容器时的进程
-ENTRYPOINT ["java","-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=9093","-jar","/consumer.jar"]
+ENTRYPOINT ["java","-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=9093","-Dfile.encoding=UTF-8","-jar","/consumer.jar"]
 # 暴露8080端口
 EXPOSE 8080

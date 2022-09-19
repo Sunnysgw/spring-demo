@@ -1,18 +1,15 @@
 spring:
   application:
     name: provider
-  datasource:
-    username: root
-    password: mysqlpw
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://mysql:3306/sgw
-#    url: jdbc:mysql://localhost:3306/sgw
   cloud:
     nacos:
       server-addr: nacos1:8848
 #      server-addr: localhost:8848
       username: nacos
       password: nacos
+      config:
+        group: demoCloud
+        file-extension: yaml
       discovery:
         cluster-name: ${CLUSTER_NAME:ali}
         metadata:
@@ -20,7 +17,3 @@ spring:
           date: 2020-09-06
           grey: false
         group: demoCloud
-
-
-mybatis:
-  mapper-locations: classpath:/mapper/*.xml

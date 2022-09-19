@@ -14,9 +14,8 @@ spring:
         group: demoCloud
   profiles:
     active: dev
-feign:
-  compression:
-    request:
-      enabled: true
+
+
+
 
 

@@ -1,5 +1,6 @@
 com\sgw\common\properties\DemoProperties.class
-com\sgw\common\interceper\HeaderInterceptor.class
+com\sgw\common\constants\SentinelConstants.class
+com\sgw\service\WorkerServiceImpl.class
 com\sgw\App.class
 com\sgw\controller\ConsumerController.class
 com\sgw\api\UserInfoControllerClient.class
@@ -7,7 +8,10 @@ com\sgw\common\ControllerAdvice.class
 com\sgw\common\MyEncoder.class
 com\sgw\common\configuration\WebMvcConfiguration.class
 com\sgw\common\postprocessor\CommonBeanPostProcessor.class
+com\sgw\service\IWorkerService.class
+com\sgw\common\feigninterceper\HeaderInterceptor.class
 com\sgw\common\configuration\SentinelConfiguration.class
+com\sgw\common\filter\ContentTypeFilter.class
 com\sgw\common\configuration\NetworkConfiguration.class
 com\sgw\common\configuration\WebMvcConfiguration$MyInterceptor.class
 com\sgw\common\configuration\WebMvcConfiguration$1.class
