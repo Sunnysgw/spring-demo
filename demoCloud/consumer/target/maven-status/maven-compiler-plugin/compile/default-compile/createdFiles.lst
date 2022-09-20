@@ -8,8 +8,8 @@ com\sgw\common\ControllerAdvice.class
 com\sgw\common\MyEncoder.class
 com\sgw\common\configuration\WebMvcConfiguration.class
 com\sgw\common\postprocessor\CommonBeanPostProcessor.class
+com\sgw\common\configuration\FeignConfiguration.class
 com\sgw\service\IWorkerService.class
-com\sgw\common\feigninterceper\HeaderInterceptor.class
 com\sgw\common\configuration\SentinelConfiguration.class
 com\sgw\common\filter\ContentTypeFilter.class
 com\sgw\common\configuration\NetworkConfiguration.class
