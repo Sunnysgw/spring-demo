@@ -4,7 +4,7 @@ public class LoadClass {
 
     public static void main(String[] args) {
         LoadClass loadClass = new LoadClass();
-
+        Class<? extends LoadClass> aClass = loadClass.getClass();
 
     }
 
