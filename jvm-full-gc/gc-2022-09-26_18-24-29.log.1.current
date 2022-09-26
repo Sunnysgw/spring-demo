@@ -1,0 +1,15 @@
+2022-09-26 20:22:44 GC log file created ./gc-2022-09-26_18-24-29.log.1
+Java HotSpot(TM) 64-Bit Server VM (25.301-b09) for bsd-amd64 JRE (1.8.0_301-b09), built on Jun  9 2021 14:35:36 by "java_re" with gcc 4.2.1 Compatible Apple LLVM 11.0.0 (clang-1100.0.33.17)
+Memory: 4k page, physical 16777216k(43032k free)
+
+/proc/meminfo:
+
+CommandLine flags: -XX:-BytecodeVerificationLocal -XX:-BytecodeVerificationRemote -XX:CICompilerCount=4 -XX:CMSInitiatingOccupancyFraction=92 -XX:CompressedClassSpaceSize=260046848 -XX:GCLogFileSize=8192 -XX:InitialHeapSize=2147483648 -XX:+ManagementServer -XX:MaxHeapSize=2147483648 -XX:MaxMetaspaceSize=268435456 -XX:MaxNewSize=805306368 -XX:MetaspaceSize=268435456 -XX:MinHeapDeltaBytes=196608 -XX:NewSize=805306368 -XX:NumberOfGCLogFiles=10 -XX:OldPLABSize=16 -XX:OldSize=1342177280 -XX:+PrintGC -XX:+PrintGCCause -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:SurvivorRatio=8 -XX:TargetSurvivorRatio=60 -XX:ThreadStackSize=256 -XX:TieredStopAtLevel=1 -XX:+UseCMSInitiatingOccupancyOnly -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseConcMarkSweepGC -XX:+UseFastUnorderedTimeStamps -XX:+UseGCLogFileRotation -XX:+UseParNewGC 
+Heap
+ par new generation   total 707840K, used 290834K [0x0000000770800000, 0x00000007a0800000, 0x00000007a0800000)
+  eden space 629248K,  42% used [0x0000000770800000, 0x0000000780a4e328, 0x0000000796e80000)
+  from space 78592K,  33% used [0x0000000796e80000, 0x00000007988366f8, 0x000000079bb40000)
+  to   space 78592K,   0% used [0x000000079bb40000, 0x000000079bb40000, 0x00000007a0800000)
+ concurrent mark-sweep generation total 1310720K, used 16920K [0x00000007a0800000, 0x00000007f0800000, 0x00000007f0800000)
+ Metaspace       used 32638K, capacity 34360K, committed 34432K, reserved 1079296K
+  class space    used 4402K, capacity 4736K, committed 4736K, reserved 1048576K
