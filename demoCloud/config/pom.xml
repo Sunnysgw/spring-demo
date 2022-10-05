@@ -17,5 +17,6 @@
         <module>web-api</module>
         <module>zookeeper-api</module>
         <module>common-api</module>
+        <module>redis</module>
     </modules>
 </project>

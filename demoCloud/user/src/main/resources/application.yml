@@ -4,16 +4,30 @@ spring:
   datasource:
     read:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: jdbc:mysql://127.0.0.1:3306/sgw?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=true
+      jdbc-url: jdbc:mysql://mysql-alone:3306/sgw?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=true
       username: root
       password: mysqlpw
     write:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: jdbc:mysql://127.0.0.1:3306/write?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=true
+      jdbc-url: jdbc:mysql://mysql-alone:3306/write?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=true
       username: root
       password: mysqlpw
-  main:
-    allow-circular-references: true
+  redis:
+    database: 0
+    timeout: 3000
+    cluster:
+      nodes:
+        - master1:6379
+        - master2:6379
+        - master3:6379
+      max-redirects: 6
+    lettuce:
+      pool:
+        max-active: 20
+        max-idle: 10
+        min-idle: 5
+        max-wait: 1000
+
 
 mybatis:
   mapper-locations: classpath:/mapper/**.xml

@@ -1,10 +1,13 @@
 package com.sgw.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.sgw.annotions.DS;
 import com.sgw.constants.DatasourceConstants;
 import com.sgw.entity.Role;
 import com.sgw.dao.RoleDao;
 import com.sgw.service.RoleService;
+import io.lettuce.core.codec.CRC16;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -24,6 +27,9 @@ public class RoleServiceImpl implements RoleService {
     @Resource
     private RoleDao roleDao;
 
+    @Resource
+    private StringRedisTemplate stringRedisTemplate;
+
     /**
      * 通过ID查询单条数据
      *
@@ -34,8 +40,14 @@ public class RoleServiceImpl implements RoleService {
     @Override
     @DS(source = DatasourceConstants.READ_SOURCE)
     public Role queryById(Integer id) {
-        roleDao.queryById(id);
-        return this.roleDao.queryById(id);
+        String cache;
+        if ((cache = stringRedisTemplate.opsForValue().get(id + "")) != null) {
+            return JSON.parseObject(cache, Role.class);
+        }
+        Role role = roleDao.queryById(id);
+        cache = JSON.toJSONString(role);
+        stringRedisTemplate.opsForValue().set(id + "", cache);
+        return role;
     }
 
     /**

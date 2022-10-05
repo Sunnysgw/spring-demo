@@ -1,1 +1,10 @@
+/Users/sunny/git/spring-demo/demoCloud/user/src/main/java/com/sgw/annotions/DS.java
+/Users/sunny/git/spring-demo/demoCloud/user/src/main/java/com/sgw/config/DatabaseConfiguration.java
+/Users/sunny/git/spring-demo/demoCloud/user/src/main/java/com/sgw/aop/DatabaseSourceAOP.java
 /Users/sunny/git/spring-demo/demoCloud/user/src/main/java/com/sgw/App.java
+/Users/sunny/git/spring-demo/demoCloud/user/src/main/java/com/sgw/service/impl/RoleServiceImpl.java
+/Users/sunny/git/spring-demo/demoCloud/user/src/main/java/com/sgw/entity/Role.java
+/Users/sunny/git/spring-demo/demoCloud/user/src/main/java/com/sgw/controller/RoleController.java
+/Users/sunny/git/spring-demo/demoCloud/user/src/main/java/com/sgw/service/RoleService.java
+/Users/sunny/git/spring-demo/demoCloud/user/src/main/java/com/sgw/constants/DatasourceConstants.java
+/Users/sunny/git/spring-demo/demoCloud/user/src/main/java/com/sgw/dao/RoleDao.java

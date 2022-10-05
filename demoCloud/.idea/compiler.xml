@@ -11,6 +11,7 @@
         <module name="mybatis-plus-api" />
         <module name="zookeeper" />
         <module name="mybatis-api" />
+        <module name="redis" />
         <module name="nacos" />
         <module name="demo-zookeeper" />
         <module name="common-api" />
