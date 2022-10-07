@@ -3,6 +3,7 @@ package com.sgw.controller;
 import com.sgw.common.lock.RedisLock;
 import org.redisson.RedissonRedLock;
 import org.redisson.api.RLock;
+import org.redisson.api.RSemaphore;
 import org.redisson.api.RedissonClient;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -48,6 +49,11 @@ public class RedisController {
         } finally {
             redisLock.unLock();
         }
+    }
+
+    public void test() {
+        RSemaphore hello = redissonClient.getSema
+        hello.addPermits();
     }
 
 }
