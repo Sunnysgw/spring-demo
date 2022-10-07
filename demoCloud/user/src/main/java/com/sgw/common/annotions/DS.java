@@ -1,6 +1,6 @@
-package com.sgw.annotions;
+package com.sgw.common.annotions;
 
-import com.sgw.constants.DatasourceConstants;
+import com.sgw.common.constants.DatasourceConstants;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

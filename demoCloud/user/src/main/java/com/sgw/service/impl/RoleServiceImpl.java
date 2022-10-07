@@ -1,12 +1,11 @@
 package com.sgw.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.sgw.annotions.DS;
-import com.sgw.constants.DatasourceConstants;
+import com.sgw.common.annotions.DS;
+import com.sgw.common.constants.DatasourceConstants;
 import com.sgw.entity.Role;
 import com.sgw.dao.RoleDao;
 import com.sgw.service.RoleService;
-import io.lettuce.core.codec.CRC16;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;

@@ -1,7 +1,7 @@
-package com.sgw.aop;
+package com.sgw.common.aop;
 
-import com.sgw.annotions.DS;
-import com.sgw.config.DatabaseConfiguration;
+import com.sgw.common.annotions.DS;
+import com.sgw.common.config.DatabaseConfiguration;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
@@ -18,7 +18,7 @@ import java.lang.reflect.Method;
 @Order(1)
 public class DatabaseSourceAOP {
 
-    @Pointcut("@annotation(com.sgw.annotions.DS)")
+    @Pointcut("@annotation(com.sgw.common.annotions.DS)")
     public void ds() {}
 
     @Before("ds()")

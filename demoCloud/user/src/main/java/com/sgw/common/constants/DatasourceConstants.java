@@ -1,4 +1,4 @@
-package com.sgw.constants;
+package com.sgw.common.constants;
 
 public class DatasourceConstants {
 

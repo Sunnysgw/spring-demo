@@ -1,6 +1,6 @@
-package com.sgw.config;
+package com.sgw.common.config;
 
-import com.sgw.constants.DatasourceConstants;
+import com.sgw.common.constants.DatasourceConstants;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
