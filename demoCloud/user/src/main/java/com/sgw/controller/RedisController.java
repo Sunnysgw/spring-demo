@@ -50,10 +50,4 @@ public class RedisController {
             redisLock.unLock();
         }
     }
-
-    public void test() {
-        RSemaphore hello = redissonClient.getSema
-        hello.addPermits();
-    }
-
 }

@@ -4,10 +4,7 @@ import feign.FeignException;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import feign.Response;
-import feign.codec.DecodeException;
-import feign.codec.Decoder;
-import feign.codec.EncodeException;
-import feign.codec.Encoder;
+import feign.codec.*;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -20,15 +17,10 @@ import static java.lang.String.format;
  * @author: sunnysgw
  * @since: 1.0
  **/
-public class FeignConfiguration implements RequestInterceptor, Encoder, Decoder {
+public class FeignConfiguration implements RequestInterceptor, Encoder {
     @Override
     public void apply(RequestTemplate template) {
         template.header("data", new Date().toString());
-    }
-
-    @Override
-    public Object decode(Response response, Type type) throws IOException, DecodeException, FeignException {
-        return null;
     }
 
     @Override

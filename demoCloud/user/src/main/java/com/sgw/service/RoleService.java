@@ -21,15 +21,6 @@ public interface RoleService {
     Role queryById(Integer id);
 
     /**
-     * 分页查询
-     *
-     * @param role 筛选条件
-     * @param pageRequest      分页对象
-     * @return 查询结果
-     */
-    Page<Role> queryByPage(Role role, PageRequest pageRequest);
-
-    /**
      * 新增数据
      *
      * @param role 实例对象

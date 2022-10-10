@@ -18,5 +18,6 @@
         <module>zookeeper-api</module>
         <module>common-api</module>
         <module>redis</module>
+        <module>mq</module>
     </modules>
 </project>

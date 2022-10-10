@@ -32,8 +32,6 @@ public class UserInfoController implements UserInfoControllerAPI {
     @Resource
     private UserInfoService userInfoService;
 
-    @Value("${}")
-
     private static final Integer ID = new Random().nextInt(100);
 
     /**

@@ -10,6 +10,7 @@
         <module name="zookeeper-api" />
         <module name="mybatis-plus-api" />
         <module name="zookeeper" />
+        <module name="mq" />
         <module name="mybatis-api" />
         <module name="redis" />
         <module name="nacos" />

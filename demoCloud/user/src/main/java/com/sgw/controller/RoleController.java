@@ -25,18 +25,6 @@ public class RoleController {
     private RoleService roleService;
 
     /**
-     * 分页查询
-     *
-     * @param role 筛选条件
-     * @param pageRequest      分页对象
-     * @return 查询结果
-     */
-    @GetMapping
-    public ResponseEntity<Page<Role>> queryByPage(Role role, PageRequest pageRequest) {
-        return ResponseEntity.ok(this.roleService.queryByPage(role, pageRequest));
-    }
-
-    /**
      * 通过主键查询单条数据
      *
      * @param id 主键

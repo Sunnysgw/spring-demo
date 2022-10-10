@@ -16,7 +16,9 @@ public class RedissonConfiguration {
     public RedissonClient redissonClient() {
         Config config = new Config();
         config.useClusterServers()
-                .addNodeAddress("master1:6379", "master2:6379", "master3:6379");
+                .addNodeAddress("redis://master1:6379",
+                        "redis://master2:6379",
+                        "redis://master3:6379");
         return Redisson.create(config);
     }
 

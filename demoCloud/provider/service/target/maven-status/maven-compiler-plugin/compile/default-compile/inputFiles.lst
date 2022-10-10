@@ -6,3 +6,4 @@
 /Users/sunny/git/spring-demo/demoCloud/provider/service/src/main/java/com/sgw/provider/common/converter/StringToSortConverter.java
 /Users/sunny/git/spring-demo/demoCloud/provider/service/src/main/java/com/sgw/provider/dao/UserInfoDao.java
 /Users/sunny/git/spring-demo/demoCloud/provider/service/src/main/java/com/sgw/provider/service/impl/UserInfoServiceImpl.java
+/Users/sunny/git/spring-demo/demoCloud/provider/service/src/main/java/com/sgw/provider/common/listener/KafkaListener.java

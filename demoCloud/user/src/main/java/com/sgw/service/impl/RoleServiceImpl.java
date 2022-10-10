@@ -6,14 +6,18 @@ import com.sgw.common.constants.DatasourceConstants;
 import com.sgw.entity.Role;
 import com.sgw.dao.RoleDao;
 import com.sgw.service.RoleService;
+import lombok.extern.java.Log;
+import org.redisson.api.RBloomFilter;
+import org.redisson.api.RLock;
+import org.redisson.api.RReadWriteLock;
+import org.redisson.api.RedissonClient;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 /**
  * (Role)表服务实现类
@@ -21,13 +25,38 @@ import javax.annotation.Resource;
  * @author makejava
  * @since 2022-09-29 09:36:18
  */
+@Log
 @Service("roleService")
-public class RoleServiceImpl implements RoleService {
+public class RoleServiceImpl implements RoleService, InitializingBean {
+
+    private static final String ROLE_KEY = "ROLE_KEY";
+
+    private static final String ROLE_CREATE_CACHE_KEY = "ROLE_CREATE_CACHE_KEY";
+
+    private static final String ROLE_UPDATE_CACHE_KEY = "ROLE_UPDATE_CACHE_KEY";
+
+    private static final Integer MAX_WAIT_CREATE_CACHE_LOCK_TIME_MILLION_SECOND = 3000;
+
+    private static final Integer ROLE_MAX_CACHE_TIME_HOUR = 1;
+
     @Resource
     private RoleDao roleDao;
 
     @Resource
     private StringRedisTemplate stringRedisTemplate;
+
+    @Resource
+    private RedissonClient redissonClient;
+
+    private RReadWriteLock roleUpdateLock;
+
+    private RLock roleCreateLock;
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        roleUpdateLock = redissonClient.getReadWriteLock(ROLE_UPDATE_CACHE_KEY);
+        roleCreateLock = redissonClient.getLock(ROLE_CREATE_CACHE_KEY);
+    }
 
     /**
      * 通过ID查询单条数据
@@ -37,29 +66,44 @@ public class RoleServiceImpl implements RoleService {
      */
     @Transactional
     @Override
-    @DS(source = DatasourceConstants.READ_SOURCE)
+    @DS
     public Role queryById(Integer id) {
         String cache;
-        if ((cache = stringRedisTemplate.opsForValue().get(id + "")) != null) {
+        if ((cache = stringRedisTemplate.opsForValue().get(ROLE_KEY + id)) != null) {
             return JSON.parseObject(cache, Role.class);
         }
-        Role role = roleDao.queryById(id);
-        cache = JSON.toJSONString(role);
-        stringRedisTemplate.opsForValue().set(id + "", cache);
-        return role;
-    }
+        // 二次检查缓存前加锁，并行转串行
+        // 超过一定时间还没拿到锁，并行转串行
+        try {
+            boolean getLock = roleCreateLock.tryLock(MAX_WAIT_CREATE_CACHE_LOCK_TIME_MILLION_SECOND, TimeUnit.MILLISECONDS);
+            if (!getLock) {
+                log.warning("尝试获取缓存创建锁过期");
+            }
+        } catch (InterruptedException ignore) {
+        }
+        Role role;
+        try {
+            if ((cache = stringRedisTemplate.opsForValue().get(ROLE_KEY + id)) != null) {
+                return JSON.parseObject(cache, Role.class);
+            }
 
-    /**
-     * 分页查询
-     *
-     * @param role 筛选条件
-     * @param pageRequest      分页对象
-     * @return 查询结果
-     */
-    @Override
-    public Page<Role> queryByPage(Role role, PageRequest pageRequest) {
-        long total = this.roleDao.count(role);
-        return new PageImpl<>(this.roleDao.queryAllByLimit(role, pageRequest), pageRequest, total);
+            roleUpdateLock.writeLock().lock();
+            try {
+                role = roleDao.queryById(id);
+                if (role == null) {
+                    // 数据库中查不到内容，返回空对象，之后写入缓存
+                    role = new Role();
+                }
+                cache = JSON.toJSONString(role);
+                stringRedisTemplate.opsForValue().set(ROLE_KEY + id, cache);
+                stringRedisTemplate.expire(ROLE_KEY + id, ROLE_MAX_CACHE_TIME_HOUR, TimeUnit.HOURS);
+            } finally {
+                roleUpdateLock.writeLock().unlock();
+            }
+        } finally {
+            roleCreateLock.unlock();
+        }
+        return role;
     }
 
     /**
@@ -72,7 +116,15 @@ public class RoleServiceImpl implements RoleService {
     @Override
     @DS
     public Role insert(Role role) {
-        this.roleDao.insert(role);
+        roleUpdateLock.writeLock().lock();
+        try {
+            this.roleDao.insert(role);
+            // todo 这里有问题，建表的时候id是自增主键，所以不会插id，应该选择表中的唯一索引做key
+            stringRedisTemplate.opsForValue().set(ROLE_KEY + role.getId(),
+                    JSON.toJSONString(role));
+        } finally {
+            roleUpdateLock.writeLock().unlock();
+        }
         return role;
     }
 
@@ -84,7 +136,14 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     public Role update(Role role) {
-        this.roleDao.update(role);
+        roleUpdateLock.writeLock().lock();
+        try {
+            this.roleDao.update(role);
+            stringRedisTemplate.opsForValue().set(ROLE_KEY + role.getId(),
+                    JSON.toJSONString(role));
+        } finally {
+            roleUpdateLock.writeLock().unlock();
+        }
         return this.queryById(role.getId());
     }
 
@@ -96,6 +155,14 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     public boolean deleteById(Integer id) {
-        return this.roleDao.deleteById(id) > 0;
+        roleUpdateLock.writeLock().lock();
+        int delCount = 0;
+        try {
+            delCount = roleDao.deleteById(id);
+            stringRedisTemplate.delete(ROLE_KEY + id);
+        } finally {
+            roleUpdateLock.writeLock().unlock();
+        }
+        return delCount > 0;
     }
 }
